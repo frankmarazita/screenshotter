@@ -77,8 +77,9 @@ COPY --from=prerelease /usr/src/app/index.ts .
 COPY --from=prerelease /usr/src/app/src src
 COPY --from=prerelease /usr/src/app/package.json .
 
-RUN bunx puppeteer browsers install chrome
-
 # run the app
 USER bun
+
+RUN bunx puppeteer browsers install chrome
+
 ENTRYPOINT [ "bun", "run", "index.ts" ]
