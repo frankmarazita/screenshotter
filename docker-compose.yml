@@ -3,7 +3,7 @@ services:
     image: "${IMAGE_URL}:latest"
     container_name: ${REPO_NAME}
     ports:
-      - "3000:3000"
+      - "7537:3000"
     environment:
       ENVIRONMENT: ${ENVIRONMENT}
       SENTRY_DSN: ${SENTRY_DSN}
