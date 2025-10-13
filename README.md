@@ -23,11 +23,11 @@ Takes a screenshot of a given URL.
 
 **Parameters:**
 
-*   `url` (string, required): The URL to take a screenshot of.
-*   `dimensions` (object, required): The dimensions of the screenshot.
-    *   `width` (number, required): The width of the screenshot in pixels.
-    *   `height` (number, required): The height of the screenshot in pixels.
-*   `color` (boolean, optional, default: `true`): Whether to include color in the screenshot.
+- `url` (string, required): The URL to take a screenshot of.
+- `dimensions` (object, required): The dimensions of the screenshot.
+  - `width` (number, required): The width of the screenshot in pixels.
+  - `height` (number, required): The height of the screenshot in pixels.
+- `color` (boolean, optional, default: `true`): Whether to include color in the screenshot.
 
 **Headers:**
 
