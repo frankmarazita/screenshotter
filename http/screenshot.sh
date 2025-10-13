@@ -3,8 +3,11 @@
 # get current directory of this script
 DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 
-curl -X POST http://localhost:3000/screenshot \
+CURRENT_TIME=$(date +"%Y-%m-%d_%H-%M-%S")
+
+curl -X POST http://100.77.232.3:7537/screenshot \
 -H "Content-Type:application/json" \
 -H "x-custom-header: My Custom Header" \
+-H "x-timestamp: $CURRENT_TIME" \
 -d '{"url": "https://showheaders.com/headers.php", "dimensions": {"height": 1448, "width": 1072}, "color": false}' \
 --output "$DIR/../out/output.png"
