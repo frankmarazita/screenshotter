@@ -1,5 +1,5 @@
 {
-  "name": "template-bun",
+  "name": "screenshotter",
   "module": "index.ts",
   "type": "module",
   "scripts": {
@@ -21,8 +21,11 @@
   },
   "dependencies": {
     "@sentry/bun": "^9.42.0",
+    "@types/pngjs": "^6.0.5",
     "body-parser": "^2.2.0",
     "express": "^5.1.0",
+    "pngjs": "^7.0.0",
+    "puppeteer": "^24.24.0",
     "zod": "^4.0.10"
   }
 }
