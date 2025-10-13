@@ -1,29 +1,66 @@
-# Template Bun
+# Screenshotter
 
-A template for creating a Bun TypeScript project in my personal style.
+A simple web service for taking screenshots of web pages.
 
-It has my custom CI/CD setup and containerization for easy deployment.
+## API
 
-### Local Development
+### POST /screenshot
 
-_Ensure to rename the `name` property in `package.json` to your project name, this should also match the repo name. This is important for the CI/CD pipeline._
+Takes a screenshot of a given URL.
 
-`bun dev` - Starts the development server.
+**Request Body:**
 
-### GitHub Actions
+```json
+{
+  "url": "https://example.com",
+  "dimensions": {
+    "width": 1920,
+    "height": 1080
+  },
+  "color": true
+}
+```
 
-This project uses GitHub Actions for CI/CD. The workflow is defined in `.github/workflows/ci.yml`.
+**Parameters:**
 
-The workflow is triggered on commits to the `main` branch. A container is built and pushed to the repository.
+*   `url` (string, required): The URL to take a screenshot of.
+*   `dimensions` (object, required): The dimensions of the screenshot.
+    *   `width` (number, required): The width of the screenshot in pixels.
+    *   `height` (number, required): The height of the screenshot in pixels.
+*   `color` (boolean, optional, default: `true`): Whether to include color in the screenshot.
 
-Currently this only keeps the latest build of the application and remove previous versions. I do this personally so that I don't exceed GitHub storage quotas in private repositories.
+**Headers:**
 
-When redeploying the application, the latest build is forcably pulled from the repository. This is done to ensure that the latest version of the application is always deployed.
+Any headers starting with `x-` will be passed through to the page being screenshotted. This is useful for passing authentication tokens or other custom headers.
 
-### Production
+**Example:**
 
-The production environment is set up to use the container built in the CI/CD pipeline. The container is deployed to a server using Docker Compose.
+```bash
+curl -X POST \
+  -H "Content-Type: application/json" \
+  -H "x-my-custom-header: my-secret-token" \
+  -d '{
+    "url": "https://example.com",
+    "dimensions": {
+      "width": 1920,
+      "height": 1080
+    }
+  }' \
+  http://localhost:3000/screenshot > screenshot.png
+```
 
-The `ci.sh` script runs git pull to ensure that the latest version of the code is pulled from the repository. It then runs `deploy.sh` to deploy the container.
+## Local Development
 
-A webhook is set up to trigger the deployment when a new container is pushed to the repository.
+1.  Install dependencies:
+
+    ```bash
+    bun install
+    ```
+
+2.  Start the development server:
+
+    ```bash
+    bun dev
+    ```
+
+The server will be running at `http://localhost:3000`.
