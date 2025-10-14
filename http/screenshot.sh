@@ -5,7 +5,7 @@ DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 
 CURRENT_TIME=$(date +"%Y-%m-%d_%H-%M-%S")
 
-curl -X POST http://100.77.232.3:7537/screenshot \
+curl -X POST http://localhost:3000/screenshot \
 -H "Content-Type:application/json" \
 -H "x-custom-header: My Custom Header" \
 -H "x-timestamp: $CURRENT_TIME" \
