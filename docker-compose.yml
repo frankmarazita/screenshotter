@@ -7,4 +7,5 @@ services:
     environment:
       ENVIRONMENT: ${ENVIRONMENT}
       SENTRY_DSN: ${SENTRY_DSN}
+      TZ: ${TZ}
     restart: on-failure:5
