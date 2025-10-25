@@ -25,6 +25,10 @@ export async function screenshot(
 
   const page = await browser.newPage();
 
+  // page.on("console", (msg) => {
+  //   console.log("PAGE LOG:", msg.type(), msg.text());
+  // });
+
   await page.setExtraHTTPHeaders(passHeaders(headers));
 
   await page.setViewport({
@@ -32,7 +36,7 @@ export async function screenshot(
     height: dimensions.height,
   });
 
-  await page.goto(url, { waitUntil: "networkidle2" });
+  await page.goto(url, { waitUntil: "networkidle0" });
 
   const screenshotBuffer: Buffer = PNG.sync.write(
     PNG.sync.read((await page.screenshot()) as Buffer),
