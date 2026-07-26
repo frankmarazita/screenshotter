@@ -38,8 +38,10 @@ export async function screenshot(
 
   await page.goto(url, { waitUntil: "networkidle0" });
 
+  const raw = await page.screenshot();
+
   const screenshotBuffer: Buffer = PNG.sync.write(
-    PNG.sync.read((await page.screenshot()) as Buffer),
+    PNG.sync.read(Buffer.from(raw.buffer, raw.byteOffset, raw.byteLength)),
     color ? {} : { colorType: 0 }
   );
 
