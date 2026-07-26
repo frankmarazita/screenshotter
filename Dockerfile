@@ -8,6 +8,8 @@ WORKDIR /usr/src/app
 # install dependencies into temp directory
 # this will cache them and speed up future builds
 FROM base AS install
+# the browser cache is not copied out of this stage, so skip the postinstall download
+ENV PUPPETEER_SKIP_DOWNLOAD=1
 RUN mkdir -p /temp/dev
 COPY package.json bun.lock /temp/dev/
 RUN cd /temp/dev && bun install --frozen-lockfile
@@ -67,6 +69,7 @@ RUN apt-get update && apt-get install -y \
     libxss1 \
     libxtst6 \
     lsb-release \
+    unzip \
     wget \
     xdg-utils \
     --no-install-recommends \
